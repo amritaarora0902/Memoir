@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Editor</title>
+        <link rel="stylesheet" type="text/css" href="./styles/theme.css">
+        <script src="../functions.js"></script>
+        
+    </head>
+    <body onload="loadArticles()">
+
+        <div class="heading">
+            <h1>Editor</h1>
+        </div>
+       <div>
+        <h4 class="theme">Choose the theme for the editor</h4>
+        <button class="button1">Puzzle</button>
+        <button class="button2">Article</button>
+        <button class="button3">Code</button>
+       </div>
+       <div class="lang">
+           <h4>Choose the language to be used and the difficulty level</h4>
+           <div class="dropdown">
+            <button class="button4">Programming Language</button>
+            <div class="dropdown-content">
+            <p>C++</p>
+            <p>Java</p>
+            <p>Python</p>
+            <p>C</p>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="button5">Difficulty Level</button>
+            <div class="dropdown-content">
+            <p>Easy</p>
+            <p>Medium</p>
+            <p>Hard</p>
+            </div>
+          </div>
+       </div>
+        <div class="container">
+            <textarea name="content"></textarea>
+        </div>
+       
+        <!-- <script src="../ckeditor/ckeditor.js"></script>
+        <script>
+     
+        </script> -->
+
+    </body>
+</html>
