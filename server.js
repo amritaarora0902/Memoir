@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs=require("ejs");
+const mysql = require('mysql')
 
 //setting app to express
 const app = express();
@@ -13,6 +14,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
+//uncomment it for connecting sql
+
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: ' ',
+//   password: ' ',
+//   database: ' '
+// });
+// connection.connect()
 
 app.get("/",function(req,res){
     // res.sendFile(__dirname+"/public/editor.html");
