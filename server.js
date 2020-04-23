@@ -1,16 +1,102 @@
+//jshint esversion:6
+//importing npm packages
 const express = require("express");
-// const http = require('http');
-// const fs = require('fs');
-// const path = require('path');
-const con = require('./DbConnection');
+const bodyParser = require("body-parser");
+const ejs=require("ejs");
 
-
-
+//setting app to express
 const app = express();
+
+//setting middlware
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-const hostname = '127.0.0.1'
-const port = '3000'
+
+
+app.get("/",function(req,res){
+    // res.sendFile(__dirname+"/public/editor.html");
+    res.render("editor");
+    // res.sendFile(__dirname+"/ckeditor/ckeditor.js");
+});
+app.post("/",function(req,res){
+    console.log(req.body);
+    var head=req.body.heading;
+    var body=req.body.blogbody;
+    console.log(head+"...."+body);
+
+
+    //here add sql and put the above variables for testing
+
+
+
+});
+
+
+
+// app.get("/ckeditor/ckeditor.js",function(req,res){
+//     res.sendFile(__dirname+"/ckeditor/ckeditor.js");
+// });
+// app.get("/",function(req,res){
+//     res.redirect(__dirname+'/public/editor.html');
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.listen(3000, function() {
+    console.log("Server started on port 3000");
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const http = require('http');
+// const fs = require('fs');
+// const path = require('path');
+// const con = require('./DbConnection');
+
+
+// const hostname = '127.0.0.1'
+// const port = '3000'
 
 // http.createServer(function(req, res){
 
@@ -58,34 +144,3 @@ const port = '3000'
 
 //     console.log(req.url);
 // }).listen(3000);
-
-app.get("/",function(req,res){
-    res.sendFile(__dirname+"/public/editor.html");
-    // res.sendFile(__dirname+"/ckeditor/ckeditor.js");
-});
-// app.get("/ckeditor/ckeditor.js",function(req,res){
-//     res.sendFile(__dirname+"/ckeditor/ckeditor.js");
-// });
-// app.get("/",function(req,res){
-//     res.redirect(__dirname+'/public/editor.html');
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(3000, function() {
-    console.log("Server started on port 3000");
-  });
