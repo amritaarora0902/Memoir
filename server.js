@@ -29,6 +29,13 @@ app.get("/",function(req,res){
     res.render("editor");
     // res.sendFile(__dirname+"/ckeditor/ckeditor.js");
 });
+
+app.get("/articles",function(req,res){
+    res.render("articles");
+});
+
+
+
 app.post("/",function(req,res){
     console.log(req.body);
     var head=req.body.heading;

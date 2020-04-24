@@ -1,0 +1,150 @@
+<%- include("partials/header") %>
+
+<body class="bg-light">
+   <header >
+       <div class="container p-5">
+           <div class="row">
+            <div class="col-sm-4 d-flex justify-content-center p-sm-1">
+            <button role="button" id="ViewArticle" class="btn btn-warning mb-2">VIEW ARTICLES</button>
+            </div>
+            <div class="col-sm-4 d-flex justify-content-center p-sm-1">
+                <button role="button" id="ViewCode" class="btn btn-warning mb-2">VIEW CODE</button>
+            </div>
+             <div class="col-sm-4 d-flex justify-content-center p-sm-1">
+                <button role="button" id="ViewPuzzle" class="btn btn-warning mb-2">VIEW PUZZLES</button>
+            </div>
+           </div>
+       </div>
+   </header>
+
+   <section>
+       <div class="container">
+           <div class="d-none" id="ViewA" >
+            <!-- <posts.forEach(function(post){%> -->
+                <div class="row">
+                    <div class="col-12">
+                     <div class="card">
+                         <div class="card-body">
+                             <div class="row ">
+                                 <div class="col-10">
+                                     <p>Article</p>
+                                    <!-- <p> post.title%></p> -->
+                                 </div>
+                                 <div class="col-2">
+                                     <button role="button" class="btn btn-danger"> <a href="/posts/">VIEW</a></button>
+                                 </div>
+                             </div>
+                         </div>
+                       </div> 
+                    </div>
+                </div>
+                <!-- <})%> -->
+           </div>
+           <div class="d-none" id="ViewC" >
+            <!-- <posts.forEach(function(post){%> -->
+                <div class="row">
+                    <div class="col-12">
+                     <div class="card">
+                         <div class="card-body">
+                             <div class="row ">
+                                 <div class="col-10">
+                                    <p>Code</p>
+                                    <!-- <p> <= post.title%></p> -->
+                                 </div>
+                                 <div class="col-2">
+                                     <button role="button" class="btn btn-danger"> <a href="/posts/">VIEW</a></button>
+                                 </div>
+                             </div>
+                         </div>
+                       </div> 
+                    </div>
+                </div>
+                <!-- <})%> -->
+           </div>
+           <div class="d-none" id="ViewP">
+            <!-- <posts.forEach(function(post){%> -->
+                <div class="row">
+                    <div class="col-12">
+                     <div class="card">
+                         <div class="card-body">
+                             <div class="row ">
+                                 <div class="col-10">
+                                    <p>Puzzle</p>
+                                    <!-- <p> <= post.title%></p> -->
+                                 </div>
+                                 <div class="col-2">
+                                     <button role="button" class="btn btn-danger"> <a href="/posts/">VIEW</a></button>    
+                                 </div>
+                             </div>
+                         </div>
+                       </div> 
+                    </div>
+                </div>
+                <!-- <})%> -->
+           </div>
+       </div>
+   </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <script src="./ckeditor/ckeditor.js"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   <script>
+       $("#ViewArticle").on("click",function(){
+           $("#ViewA").removeClass("d-none");
+           $("#ViewC").addClass("d-none");
+           $("#ViewP").addClass("d-none");
+       });
+       $("#ViewCode").on("click",function(){
+           $("#ViewC").removeClass("d-none");
+           $("#ViewA").addClass("d-none");
+           $("#ViewP").addClass("d-none");
+       });
+       $("#ViewPuzzle").on("click",function(){
+           $("#ViewP").removeClass("d-none");
+           $("#ViewC").addClass("d-none");
+           $("#ViewA").addClass("d-none");
+       });
+   </script>
+
+</body>
+</html>
+
+
+<!-- include("partials/footer") %>  -->
