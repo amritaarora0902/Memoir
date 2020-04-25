@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
-app.use(express.static('public'));
 
 router.get('/', (req,res,next) => {
     res.render('editor', {title: "my"})
@@ -30,7 +29,7 @@ var connection = mysql.createConnection({
     password: 'Amrita@0902',
     database: 'www'
 });
-
+var a=[];
 connection.connect(function(err){
     if(err) throw err;
     console.log('connected');
@@ -39,12 +38,16 @@ app.post('/submit', function(req, res) {
     var sql = "INSERT INTO `editor` (head,blog) VALUES ('" + req.body.head + "','" + req.body.blog + "')";
     connection.query(sql, function(err) {
         if(err) throw err
+    console.log(req.body);
+    // console.log(req.body.head+"...."+req.body.blog);
         res.render('editor', {title: 'datasaved',message:'blog saved'});
     });
     connection.end();
 });
 
 });
+
+
 
 
 
