@@ -3,7 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs=require("ejs");
-const mysql = require('mysql')
+const mysql = require('mysql');
+const router = express.Router();
 
 //setting app to express
 const app = express();
@@ -14,49 +15,37 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
-//uncomment it for connecting sql
+app.use(express.static('public'));
 
-// var connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: ' ',
-//   password: ' ',
-//   database: ' '
-// });
-// connection.connect()
-
-app.get("/",function(req,res){
-    // res.sendFile(__dirname+"/public/editor.html");
-    res.render("editor");
-    // res.sendFile(__dirname+"/ckeditor/ckeditor.js");
+router.get('/', (req,res,next) => {
+    res.render('editor', {title: "my"})
 });
 
-app.get("/articles",function(req,res){
-    res.render("articles");
+app.use('/', router);
+
+
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'Amrita@0902',
+    database: 'www'
 });
 
+connection.connect(function(err){
+    if(err) throw err;
+    console.log('connected');
 
-
-app.post("/",function(req,res){
-    console.log(req.body);
-    var head=req.body.heading;
-    var body=req.body.blogbody;
-    console.log(head+"...."+body);
-
-
-    //here add sql and put the above variables for testing
-
-
+app.post('/submit', function(req, res) {
+    var sql = "INSERT INTO `editor` (head,blog) VALUES ('" + req.body.head + "','" + req.body.blog + "')";
+    connection.query(sql, function(err) {
+        if(err) throw err
+        res.render('editor', {title: 'datasaved',message:'blog saved'});
+    });
+    connection.end();
+});
 
 });
 
-
-
-// app.get("/ckeditor/ckeditor.js",function(req,res){
-//     res.sendFile(__dirname+"/ckeditor/ckeditor.js");
-// });
-// app.get("/",function(req,res){
-//     res.redirect(__dirname+'/public/editor.html');
-// })
 
 
 
