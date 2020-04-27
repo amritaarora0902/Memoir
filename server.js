@@ -17,10 +17,16 @@ app.use(express.static("public"));
 
 
 router.get('/', (req,res,next) => {
-    res.render('editor', {title: "my"})
+    res.render('editor', {title: "my"});
+    next();
 });
 
 app.use('/', router);
+
+router.get('/articles', (req,res,next) => {
+    res.render('articles', {title: "my"})
+});
+app.use('/articles', router);
 
 
 var connection = mysql.createConnection({
@@ -35,7 +41,7 @@ connection.connect(function(err){
     console.log('connected');
 
 app.post('/submit', function(req, res) {
-    var sql = "INSERT INTO `editor` (head,blog) VALUES ('" + req.body.head + "','" + req.body.blog + "')";
+    var sql = "INSERT INTO `editor_article` (lang,level,head,blog) VALUES ('"+ req.body.lang + "','"+ req.body.level + "','" + req.body.head + "','" + req.body.blog + "')";
     connection.query(sql, function(err) {
         if(err) throw err
     console.log(req.body);
@@ -44,6 +50,22 @@ app.post('/submit', function(req, res) {
     });
     connection.end();
 });
+
+// this script to fetch data from MySQL databse table
+app.get('/user-list', function(req, res, next) {
+    var sql='SELECT * FROM `editor_article`';
+    connection.query(sql, (err, results, fields) => {
+        if (err) {
+            return console.error(err.message);
+          }
+    
+    console.log(results);
+    
+  });
+  connection.end();
+});
+
+
 
 });
 
