@@ -1,0 +1,50 @@
+<%- include("partials/header") %>
+<body class="bg-light">
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <h1 class="card-header text-center">Article: <%= Head %></h1>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <h5 class="card-title">Language:<span><%= Lang %></span></h5>
+                        </div>
+                        <div class="col-3 ml-auto">
+                            <h5 class="card-title">Difficulty Level:<span><%= Lvl %></span></h5>
+                        </div>
+                    </div>
+                  <p class="card-text"><%= Body %></p>
+                  </div>
+                  <div class="card-footer">
+                    <div class="col-4 ml-auto">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-warning">DRAFT</button>
+                            <button type="button" class="btn btn-warning">REJECT</button>
+                            <button type="button" class="btn btn-warning">ACCEPT</button>
+                          </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <%- include("partials/footer") %> 

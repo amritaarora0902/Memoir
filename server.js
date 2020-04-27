@@ -35,7 +35,7 @@ var connection = mysql.createConnection({
     password: 'Amrita@0902',
     database: 'www'
 });
-var a=[];
+var ar=[];
 
 connection.connect(function(err){
     if(err) throw err;
@@ -59,11 +59,20 @@ app.get('/articles', function(req, res, next) {
         if (err) {
             return console.error(err.message);
           }
+          ar=results;
      console.log(results);
     res.render('articles',{posts:results});
     
   });
 //   connection.end();
+});
+app.get("/articles/:postName",(req,res)=>{
+    const reqPost=req.params.postName;
+    ar.forEach((post)=>{
+        if(post.Head===reqPost){
+            res.render('post',{Head:post.Head,Body:post.Blog,Lang:post.Lang,Lvl:post.Level});
+        }
+    });
 });
 
 
