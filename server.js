@@ -36,6 +36,7 @@ var connection = mysql.createConnection({
     database: 'www'
 });
 var a=[];
+
 connection.connect(function(err){
     if(err) throw err;
     console.log('connected');
@@ -48,21 +49,21 @@ app.post('/submit', function(req, res) {
     // console.log(req.body.head+"...."+req.body.blog);
         res.render('editor', {title: 'datasaved',message:'blog saved'});
     });
-    connection.end();
+    // connection.end();
 });
 
 // this script to fetch data from MySQL databse table
-app.get('/user-list', function(req, res, next) {
-    var sql='SELECT * FROM `editor_article`';
+app.get('/articles', function(req, res, next) {
+    var sql='SELECT * FROM `Articles`';
     connection.query(sql, (err, results, fields) => {
         if (err) {
             return console.error(err.message);
           }
-    
-    console.log(results);
+     console.log(results);
+    res.render('articles',{posts:results});
     
   });
-  connection.end();
+//   connection.end();
 });
 
 
