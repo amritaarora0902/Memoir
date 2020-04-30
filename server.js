@@ -23,10 +23,6 @@ router.get('/', (req,res,next) => {
 
 app.use('/', router);
 
-router.get('/articles', (req,res,next) => {
-    res.render('articles', {title: "my"})
-});
-app.use('/articles', router);
 
 
 var connection = mysql.createConnection({
@@ -36,25 +32,51 @@ var connection = mysql.createConnection({
     database: 'www'
 });
 var ar=[];
-
+var sel;
 connection.connect(function(err){
     if(err) throw err;
     console.log('connected');
 
+
+//insert data to mysql    
 app.post('/submit', function(req, res) {
-    var sql = "INSERT INTO `editor_article` (lang,level,head,blog) VALUES ('"+ req.body.lang + "','"+ req.body.level + "','" + req.body.head + "','" + req.body.blog + "')";
+    if(req.body.theme === 'Article')
+    {
+    sel='Article';
+    var sql = "INSERT INTO `Articles` (theme,lang,level,head,blog) VALUES ('"+ req.body.theme +"','"+ req.body.lang + "','"+ req.body.level + "','" + req.body.head + "','" + req.body.blog + "')";
     connection.query(sql, function(err) {
-        if(err) throw err
-    console.log(req.body);
-    // console.log(req.body.head+"...."+req.body.blog);
+        if(err) throw err;
+  
         res.render('editor', {title: 'datasaved',message:'blog saved'});
     });
-    // connection.end();
+    }
+    if(req.body.theme === 'Puzzle')
+    {
+    sel='Puzzle';
+    var sql = "INSERT INTO `Puzzle` (theme,lang,level,head,blog) VALUES ('"+ req.body.theme +"','"+ req.body.lang + "','"+ req.body.level + "','" + req.body.head + "','" + req.body.blog + "')";
+    connection.query(sql, function(err) {
+        if(err) throw err;
+  
+        res.render('editor', {title: 'datasaved',message:'blog saved'});
+    });
+    }
+    if(req.body.theme === 'Code')
+    {
+    sel='Code';
+    var sql = "INSERT INTO `Code` (theme,lang,level,head,blog) VALUES ('"+ req.body.theme +"','"+ req.body.lang + "','"+ req.body.level + "','" + req.body.head + "','" + req.body.blog + "')";
+    connection.query(sql, function(err) {
+        if(err) throw err;
+  
+        res.render('editor', {title: 'datasaved',message:'blog saved'});
+    });
+    }
 });
 
 // this script to fetch data from MySQL databse table
 app.get('/articles', function(req, res, next) {
-    var sql='SELECT * FROM `Articles`';
+    if(sel==='Article')
+    {
+    var sql='SELECT * FROM `Article`';
     connection.query(sql, (err, results, fields) => {
         if (err) {
             return console.error(err.message);
@@ -62,18 +84,45 @@ app.get('/articles', function(req, res, next) {
           ar=results;
      console.log(results);
     res.render('articles',{posts:results});
-    
-  });
-//   connection.end();
+        });
+    }
+    if(sel==='Code')
+    {
+    var sql='SELECT * FROM `Code`';
+    connection.query(sql, (err, results, fields) => {
+        if (err) {
+            return console.error(err.message);
+          }
+          ar=results;
+     console.log(results);
+    res.render('articles',{posts:results});
+        });
+    }
+    if(sel==='Puzzle')
+    {
+    var sql='SELECT * FROM `Puzzle`';
+    connection.query(sql, (err, results, fields) => {
+        if (err) {
+            return console.error(err.message);
+          }
+          ar=results;
+     console.log(results);
+    res.render('articles',{posts:results});
+        });
+    }
+
 });
+
 app.get("/articles/:postName",(req,res)=>{
     const reqPost=req.params.postName;
     ar.forEach((post)=>{
-        if(post.Head===reqPost){
-            res.render('post',{Head:post.Head,Body:post.Blog,Lang:post.Lang,Lvl:post.Level});
+        if(post.head===reqPost){
+            res.render('post',{Theme:post.theme,Head:post.head,Body:post.blog,Lang:post.lang,Lvl:post.level});
         }
     });
 });
+
+
 
 
 
