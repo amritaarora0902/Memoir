@@ -1,0 +1,100 @@
+<%- include("partials/header") %>
+
+<body class="bg-light">
+   <header >
+       <div class="container p-5">
+           <div class="row">
+            <div class="col-sm-4 d-flex justify-content-center p-sm-1">
+            <button role="button"  id="ViewArticle" class="btn btn-warning mb-2"><a href="/articles/article">VIEW ARTICLES</a></button>
+            </div>
+            <div class="col-sm-4 d-flex justify-content-center p-sm-1">
+                <button role="button" id="ViewCode" class="btn btn-warning mb-2"><a href="/articles/code">VIEW CODE</a></button>
+            </div>
+             <div class="col-sm-4 d-flex justify-content-center p-sm-1">
+                <button role="button" id="ViewPuzzle" class="btn btn-warning mb-2"><a href="/articles/puzzel">VIEW PUZZLES</a></button>
+            </div>
+           </div>
+       </div>
+   </header>
+
+   <section>
+       <div class="container">
+           <div class="" id="ViewA" >
+            <div class="accordion" id="a1">
+                <% posts1.forEach(function(post){ %>
+                    <% var Id="b"+post.Id %> 
+                    <% var Idd="#b"+post.Id %> 
+                <div class="row">
+                    <div class="col-12">
+                     <div class="card">
+                  <div class="card-header" id="h1">
+                    <div class="row ">
+                        <div class="col-10">
+                            <p>Article : <%= post.Head %></p>
+                           <p></p>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-danger"data-toggle="collapse" data-target=<%=Idd %>  aria-expanded="false" ><a href="/posts/<%= post.Head %>">VIEW</a> </button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                </div>
+                 <%})%> 
+                </div>
+           </div>
+
+
+         
+           
+       </div>
+   </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <script src="./ckeditor/ckeditor.js"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+
+</body>
+</html>
+
+
+<!-- include("partials/footer") %>  -->
