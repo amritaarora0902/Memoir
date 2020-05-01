@@ -32,8 +32,8 @@ var connection = mysql.createConnection({
     database: 'www'
 });
 var ar=[];
-var co=[];
-var puz=[];
+// var co=[];
+// var puz=[];
 
 connection.connect(function(err){
     if(err) throw err;
@@ -122,14 +122,20 @@ var sql3='SELECT * FROM `Puzzle`';
 
 });
 
-app.get("/posts/:postName",(req,res)=>{
+app.get("/posts/:type-:postName",(req,res)=>{
     const reqPost=req.params.postName;
-    
+    const theme=req.params.type;
         ar.forEach((post)=>{
             if(post.Head===reqPost){
-                res.render('post',{Head:post.Head,Body:post.Blog,Lang:post.Lang,Lvl:post.Level});
+                res.render('post',{Head:post.Head,Body:post.Blog,Lang:post.Lang,Lvl:post.Level,type:theme,postId:post.Id});
             }
         });
+});
+
+
+app.get('/delete/:type-:postId',(req,res)=>{
+    // res.write("post of "+req.params.type+" ID "+req.params.postId+" deleted");
+    res.redirect('/articles/'+req.params.type+'/');
 });
 
 

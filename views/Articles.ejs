@@ -11,7 +11,7 @@
                 <button role="button" id="ViewCode" class="btn btn-warning mb-2"><a href="/articles/code">VIEW CODE</a></button>
             </div>
              <div class="col-sm-4 d-flex justify-content-center p-sm-1">
-                <button role="button" id="ViewPuzzle" class="btn btn-warning mb-2"><a href="/articles/puzzel">VIEW PUZZLES</a></button>
+                <button role="button" id="ViewPuzzle" class="btn btn-warning mb-2"><a href="/articles/puzzle">VIEW PUZZLES</a></button>
             </div>
            </div>
        </div>
@@ -21,7 +21,7 @@
        <div class="container">
            <div class="" id="ViewA" >
             <div class="accordion" id="a1">
-                <% posts1.forEach(function(post){ %>
+                <% posts.forEach(function(post){ %>
                     <% var Id="b"+post.Id %> 
                     <% var Idd="#b"+post.Id %> 
                 <div class="row">
@@ -34,7 +34,7 @@
                            <p></p>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-danger"data-toggle="collapse" data-target=<%=Idd %>  aria-expanded="false" ><a href="/posts/<%= post.Head %>">VIEW</a> </button>
+                            <button type="button" class="btn btn-danger"data-toggle="collapse" data-target=<%=Idd %>  aria-expanded="false" ><a href="/posts/<%= theme %>-<%= post.Head %>">VIEW</a> </button>
                         </div>
                     </div>
                   </div>
